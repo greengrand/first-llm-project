@@ -30,3 +30,7 @@ cp .env.example .env
 
 # запустить пример сервиса
 uvicorn service.main:app --reload --port 8000
+
+## Project status
+See [STATUS.md](./STATUS.md) for the current Day-by-day status.
+
