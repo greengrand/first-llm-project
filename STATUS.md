@@ -81,6 +81,26 @@ uvicorn service.main:app --reload --port 8000
 
 ---
 
+
+## Status — Day 3
+
+**Сделано:**
+- Проведены эксперименты с параметром `temperature` (0.0, 0.2, 0.7, 1.0) в `examples/temperature_test.py`.
+- Исправлена retry-логика: добавлен `post_with_retry` с exponential backoff и jitter (исправлена рекурсия).
+- Сохранены результаты в `logs/temperature_test_results.json`; пример положен в `results/temperature_test_results.json`.
+- Проверен строгий JSON-пrompt в `examples/json_prompt_test.py` — модель вернула валидный JSON.
+- Обновлён `learning/journal.md` с кратким отчётом по тестам; изменения закоммичены и запушены.
+
+**Наблюдения / проблемы:**
+- temperature 0.0–0.2 → стабильные/похожее поведение; 0.7 → более творческий текст.
+- temperature 1.0 привёл к 429 Rate limit (ограничение RPM). Решение: backoff + уменьшение частоты запросов или увеличение квот в панели провайдера.
+
+**Следующие шаги:**
+- Day 4: создать строгий JSON-парсер/валидатор и интегрировать его в `/summarize` endpoint.
+- Сохранить текущие промпты в `prompts/prompts_v1.md` и зафиксировать версию.
+
+
+
 ## Лицензия
 
 MIT
