@@ -18,3 +18,14 @@
 
 * Запустить temperature\_test.py и json\_prompt\_test.py
 * Сформировать prompts.md с 3 few-shot примерами
+### 2025-12-04 — temperature & json tests
+- Temperature test: results saved to logs/temperature_test_results.json
+  * temperature=0.0 -> deterministic greeting (same as 0.2)
+  * temperature=0.2 -> same greeting as 0.0
+  * temperature=0.7 -> slight variation (more creative)
+  * temperature=1.0 -> ERROR 429 (rate limit exceeded)
+- JSON prompt test: model returned valid JSON (parsed OK).
+- Выводы / next steps:
+  1. Использовать temperature 0.0–0.2 для стабильных/форматированных ответов.
+  2. Использовать 0.7–1.0 для разнообразия, но с retry/backoff и лимитированием частоты запросов.
+  3. Добавить retry/backoff в тестовый скрипт или понизить concurrency / увеличить лимит в панели.
